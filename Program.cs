@@ -139,18 +139,20 @@ namespace tools_co
 
             else if (order == "D")//add new product
             {
-                Console.WriteLine(" enter product  symbol ");
-                string symbol = Console.ReadLine();
+               
+              
                 Console.WriteLine(" enter product name");
                 string name = Console.ReadLine();
                 Console.WriteLine(" enter product quantity");
                 string quantity = Console.ReadLine();
+
                 int row = array.GetLength(0);
                 for (int i = 0; i < row; i++)
                 
                     if (array[i, 0] == null)// find first empty row
                     {
-                        array[i, 0] = symbol;
+                        array[i, 0] = "p00" + (i).ToString();// generate product symbol
+                     
                         array[i, 1] = name;
                         array[i, 2] = quantity;
                         break;
@@ -166,13 +168,13 @@ namespace tools_co
             else if (order == "E")// modify product quantity
             {
 
-                Console.WriteLine("Enter Product  symbol");// prompt for product symbol
-                string symbol = Console.ReadLine();// read product symbol
+                Console.WriteLine("Enter Product  name");// prompt for product name
+                string name = Console.ReadLine();// read product name
                 Console.WriteLine("enter new quantity");// prompt for new quantity
                 string quantity = Console.ReadLine();// read new quantity
                 int rows = array.GetLength(0);
                 for (int i = 0; i < rows; i++)
-                    if (array[i, 0] == symbol)// find product by symbol
+                    if (array[i, 1] == name)// find product by name
                     {
 
                         array[i, 2] = quantity;// modify quantity
@@ -201,8 +203,8 @@ namespace tools_co
                 {
                     if (array[i, 0] == symbol)
                     {
-                        Console.WriteLine(" {0,13}{1,13}{2,13}", array[0, 1], array[0, 2], array[i, 2]);
-                        Console.WriteLine(" {0,13}{1,13}{2,13}", array[i, 1], array[i, 3], array[i, 3]);
+                        Console.WriteLine(" {0,13}{1,13}{2,13}", array[0, 0], array[0, 1], array[0, 2], array[0, 3]);
+                        Console.WriteLine(" {0,13}{1,13}{2,13}", array[i, 0], array[i, 1], array[i, 2], array[i, 3]);
                     }
 
 
@@ -422,8 +424,16 @@ namespace tools_co
             Console.WriteLine(" welcome to {0 },Please Select \n A-Admin\n B-Employee\n C-Exit", titl);//welcom massage
              
             string Name = Console.ReadLine();//select type of account
-            if (Name == "A")
+
+               if (Name == "C")
             {
+                Console.WriteLine("Goodbye");
+
+
+            }
+           else if (Name == "A")
+            {
+
             
                 Console.WriteLine("type Your name");
                 string name = Console.ReadLine();
@@ -489,7 +499,7 @@ namespace tools_co
                             else if ((order == "G") || (order == "H"))// sall operations
                             {
 
-                                admin(order, products);
+                                admin(order, sall);
                                 goto admin_list;
                             }
                             else
@@ -518,7 +528,7 @@ namespace tools_co
                                "D-EXITE");
                 string order = Console.ReadLine();
 
-                if ((order == "A")||(order=="B")) 
+                if ((order == "A")||(order=="B"))  
                 {
                     employ(order, products,sall);
                     goto employ_list;
@@ -527,42 +537,21 @@ namespace tools_co
                 else if (order == "C") 
                 {
                     goto switchcount;
+                    
 
 
                 }
                 else if (order == "D")
                 {
-                    Console.WriteLine("Goodbye");
+                    
+                  Console.WriteLine("Goodbye");
                    
                 }
 
 
 
-
-
-
-
-
-
-
-
-
-
-
             }
-            else if (Name == "C")
-            {
-                Console.WriteLine("Goodbye");
-                
-            }
-
-
-
-
-
-
-
-
+         
 
 
             Console.ReadKey();
